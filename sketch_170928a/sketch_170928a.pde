@@ -1,5 +1,5 @@
 int x = 40, y= 40, cubeSize = 20;
-int snakeX = 20, snakeY, snakeSpeed = cubeSize;
+int snakeX = 0, snakeY= 0, snakeSpeedX = cubeSize, snakeSpeedY = 0;
 
 void setup(){
   size(800, 800);
@@ -7,6 +7,7 @@ void setup(){
  void draw(){
    background(255);
    drawGrid(); 
+   
    drawSnake();
    //fill(#7C4343);
    //rect(0, 500, width, 300);
@@ -24,6 +25,30 @@ void drawGrid(){
 void drawSnake(){
   frameRate(8);
   fill(255, 0, 0);
-  snakeX += snakeSpeed;
+  snakeY += snakeSpeedY;
+  snakeX += snakeSpeedX;
   rect(snakeX, snakeY, cubeSize, cubeSize);
+}
+
+void keyPressed(){
+ 
+  if(key == UP){
+    snakeSpeedY = snakeSpeedY * -1;
+   
+    
+  }
+  
+  else if (key == DOWN){
+    snakeSpeedY = snakeSpeedY * 1;
+
+  }
+//  else if (key == RIGHT){
+//    snakeSpeedX= snakeSpeedX *1;
+     
+//  }
+//  else if (key == LEFT){
+//    snakeSpeedX = snakeSpeedX * -1;
+     
+//  }
+
 }

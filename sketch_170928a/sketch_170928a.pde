@@ -6,9 +6,14 @@ void setup(){
 }
  void draw(){
    background(100);
-   drawGrid(); 
-   movement();
-   drawSnake();
+   if (state ==2){
+     drawGrid(); 
+     movement();
+     drawSnake();
+   }
+   else if (state ==3){
+     print("Game Over!!!", height/2, width/2);
+   }
   
    //fill(#7C4343);
    //rect(0, 500, width, 300);

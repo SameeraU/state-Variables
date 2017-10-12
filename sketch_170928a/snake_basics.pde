@@ -1,16 +1,18 @@
 ArrayList<Integer> snakeX = new ArrayList<Integer>();
 ArrayList<Integer> snakeY = new ArrayList<Integer>();
 
+
 int cubeX = 40, cubeY= 40, cubeSize = 20;
-int  direction = 2, newDirection, state = 2, i;
+int  direction = 2, newDirection;
 int snakeDX [] = {0,0, 1, -1};
 int snakeDY [] = {1, -1, 0, 0};
-int foodX = 60, foodY=60;
-
+int state = 1;
+int foodX = 14, foodY = 16;
+int snakeHead = 0;
 
 void drawGrid(){
   //fill(0);
-  //noStroke();
+  strokeWeight(1);
   for(int s = 0; s<cubeX; s++){
      line(s*cubeSize, 0, s*cubeSize, height);
    }
@@ -20,20 +22,14 @@ void drawGrid(){
 }
 
 void drawSnake(){
-  //if (frameCount % 12 == 0){
-    //frameRate(15);
-    
-    for (i = 0; i < snakeX.size(); i++){
-      fill(255, 150, 0);
-      rect(snakeX.get(i*2)*cubeSize, snakeY.get(i)*cubeSize, cubeSize, cubeSize);
-    //}
+  //frameRate(8);
+  
+  for (int i = 0; i < snakeX.size(); i++){
+    fill(255, 150, 0);
+    rect(snakeX.get(i)*cubeSize, snakeY.get(i)*cubeSize, cubeSize, cubeSize);
   }
 }
-void outOfScreen(){
-  if (snakeX.get(0)> width-cubeSize|| snakeY.get(0)> height - cubeSize){
-    state = 3;
-  }
-}
+
 void keyPressed(){
  
   if(key == 's'){
@@ -58,19 +54,32 @@ void keyPressed(){
   }
 }
 void movement(){
-  fill(54,242,27);
-  rect(foodX, foodY, cubeSize, cubeSize);
+  fill(43,222,44);
+  rect(foodX*cubeSize, foodY*cubeSize, cubeSize, cubeSize);
   if (frameCount % 6 == 0){
-    snakeX.add(0, snakeX.get(0) + snakeDX[direction]);
-    snakeY.add(0, snakeY.get(0) + snakeDY[direction]);
-    if (snakeX.get(0) ==foodX && snakeY.get(0) == foodY){
-      foodX = int(random(0, width));
-      foodY = int(random(0, height));
+    snakeX.add(0, snakeX.get(snakeHead) + snakeDX[direction]);
+    snakeY.add(0, snakeY.get(snakeHead) + snakeDY[direction]);
+    for (int body = 1; body<snakeX.size(); body ++){
+      if (snakeX.get(snakeHead)== snakeX.get(body) && snakeY.get(snakeHead)== snakeY.get(body)){
+        state = 3;
+      }
+    }
+    if (snakeX.get(snakeHead) ==foodX && snakeY.get(snakeHead) == foodY){
+      foodX =(int)random(0, 40);
+      foodY = (int)random(0, 40);
       
     }
     else{
       snakeX.remove(snakeX.size()-1);
       snakeY.remove(snakeY.size()-1);
     }  
+  }
+}
+void gameOver(){
+  if (snakeX.get(snakeHead) < 0 || snakeY.get(snakeHead) <0 || snakeX.get(snakeHead) >= width|| snakeY.get(snakeHead) >= height){
+      state = 3;
+   }
+  else{
+    
   }
 }

@@ -12,6 +12,7 @@ int snakeHead = 0;
 
 void drawGrid(){
   //fill(0);
+  stroke(0);
   strokeWeight(1);
   for(int s = 0; s<cubeX; s++){
      line(s*cubeSize, 0, s*cubeSize, height);
@@ -65,8 +66,8 @@ void movement(){
       }
     }
     if (snakeX.get(snakeHead) ==foodX && snakeY.get(snakeHead) == foodY){
-      foodX =(int)random(0, 40);
-      foodY = (int)random(0, 40);
+      foodX =(int)random(0, 35);
+      foodY = (int)random(0, 35);
       
     }
     else{
@@ -76,9 +77,12 @@ void movement(){
   }
 }
 void gameOver(){
-  if (snakeX.get(snakeHead) < 0 || snakeY.get(snakeHead) <0 || snakeX.get(snakeHead) >= width|| snakeY.get(snakeHead) >= height){
+  if (snakeX.get(snakeHead) < 0 || snakeY.get(snakeHead) <0){ 
       state = 3;
    }
+  else if (snakeX.get(snakeHead) >= width-cubeSize|| snakeY.get(snakeHead) >= height-cubeSize){
+    state = 3;
+  }
   else{
     
   }

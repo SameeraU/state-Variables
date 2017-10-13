@@ -1,11 +1,11 @@
 
 void setup(){
-  size(800, 800);
+  size(700, 700);
   snakeX.add(5);
   snakeY.add(5);
   
-  buttonX  = 300;
-  buttonY = 300;
+  buttonX  = 200;
+  buttonY = 400;
   buttonWidth = 100;
   buttonHeight = 50;
   
@@ -14,15 +14,20 @@ void setup(){
   buttonRight = buttonX + buttonWidth;
   buttonLeft = buttonX;
   
-  
+  snake = loadImage("snake.png");
+  apple = loadImage("apple.png");
+  startScreen = createFont("Sofija.ttf", 120);
 }
  void draw(){
    mouseIsOnButton();
    background(100);
    
    if (state == 1){
-     background(#4DDBD0);
+     background(#64A06E);
      displayButton();
+     writeSnake();
+     image(snake,400, 100);
+     image(apple, 350, 330, apple.width*0.10, apple.height*0.10); 
    }
    else if (state == 2){
      drawGrid(); 

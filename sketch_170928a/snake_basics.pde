@@ -6,9 +6,10 @@ int cubeX = 40, cubeY= 40, cubeSize = 20;
 int  direction = 2, newDirection;
 int snakeDX [] = {0,0, 1, -1};
 int snakeDY [] = {1, -1, 0, 0};
-int state = 1;
+int state = 0;
 int foodX = 14, foodY = 16;
 int snakeHead = 0;
+int score = 0;
 
 void drawGrid(){
   //fill(0);
@@ -68,6 +69,7 @@ void movement(){
     if (snakeX.get(snakeHead) ==foodX && snakeY.get(snakeHead) == foodY){
       foodX =(int)random(0, 35);
       foodY = (int)random(0, 35);
+      score += 1;
       
     }
     else{

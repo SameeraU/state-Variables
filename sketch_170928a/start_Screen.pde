@@ -1,6 +1,7 @@
 float buttonX, buttonY, buttonWidth, buttonHeight;
 float buttonTop, buttonBottom, buttonLeft, buttonRight;
 boolean mouseOnButton = false;
+boolean mouseOnInstructions = false;
 PImage snake, apple;
 PFont startScreen, gameOver;
 
@@ -42,6 +43,7 @@ boolean mouseIsOnButton(){
    }
   return mouseOnButton;
 }
+
 void writeSnake(){
   fill(255);
   
@@ -51,5 +53,11 @@ void writeSnake(){
 void mousePressed(){
   if (mouseOnButton){
     state = 2;
+  }
+  else if (mouseOnInstructions){
+    state = 1;
+  }
+  else if (mouseIsOnMenu){
+    state = 0;
   }
 }
